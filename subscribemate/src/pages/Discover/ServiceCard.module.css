@@ -1,0 +1,72 @@
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.1s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card:active {
+  transform: scale(0.97);
+}
+
+.promoTag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--color-success);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: -0.1px;
+}
+
+.logo {
+  font-size: 36px;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ratingNum {
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFBE00;
+}
+
+.reviewCount {
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+.benefits {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.3px;
+  margin-top: auto;
+}

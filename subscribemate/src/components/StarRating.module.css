@@ -1,0 +1,26 @@
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: var(--color-border);
+  transition: color 0.1s;
+  line-height: 1;
+}
+
+.star.filled {
+  color: #FFBE00;
+}
+
+.star.interactive {
+  cursor: pointer;
+}
+
+.star.interactive:hover {
+  color: #FFBE00;
+}
+
+.sm .star { font-size: 13px; }
+.md .star { font-size: 18px; }
+.lg .star { font-size: 28px; }

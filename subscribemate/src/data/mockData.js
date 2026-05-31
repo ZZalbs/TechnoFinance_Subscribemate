@@ -57,6 +57,7 @@ export const services = [
     official_url: 'https://www.notion.so',
     base_price: 16000,
     plans: [
+      { name: 'Free', price: 0 },
       { name: 'Plus', price: 16000 },
       { name: 'Business', price: 32000 },
     ],

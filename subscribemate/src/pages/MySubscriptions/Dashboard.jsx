@@ -5,23 +5,24 @@ function getNextPayment(subscriptions, services) {
   const active = subscriptions.filter(s => s.is_active);
   if (active.length === 0) return null;
 
-  let nearest = null;
   let nearestDiff = Infinity;
 
   active.forEach(sub => {
     const d = new Date(today.getFullYear(), today.getMonth(), sub.billing_date);
     if (d <= today) d.setMonth(d.getMonth() + 1);
     const diff = Math.ceil((d - today) / (1000 * 60 * 60 * 24));
-    if (diff < nearestDiff) {
-      nearestDiff = diff;
-      nearest = { sub, diff };
-    }
+    if (diff < nearestDiff) nearestDiff = diff;
   });
 
-  if (!nearest) return null;
-  const service = services.find(s => s.id === nearest.sub.service_id);
-  const name = service ? service.name : (nearest.sub.custom_name ?? '구독');
-  return { name, diff: nearest.diff };
+  const group = active.filter(sub => {
+    const d = new Date(today.getFullYear(), today.getMonth(), sub.billing_date);
+    if (d <= today) d.setMonth(d.getMonth() + 1);
+    const diff = Math.ceil((d - today) / (1000 * 60 * 60 * 24));
+    return diff === nearestDiff;
+  });
+
+  const total = group.reduce((sum, s) => sum + s.custom_price, 0);
+  return { diff: nearestDiff, count: group.length, total };
 }
 
 export default function Dashboard({ totalAmount, activeCount, subscriptions, services }) {
@@ -43,7 +44,7 @@ export default function Dashboard({ totalAmount, activeCount, subscriptions, ser
           <span className={styles.sub}>활성 구독 {activeCount}개</span>
           {next && (
             <span className={styles.nextPayment}>
-              다음 결제 · {next.name} D-{next.diff}
+              D-{next.diff} · {next.count}건 · {next.total.toLocaleString('ko-KR')}원
             </span>
           )}
         </div>

@@ -85,8 +85,8 @@
   display: block;
   text-align: center;
   padding: 16px;
-  background: var(--color-danger);
-  color: #fff;
+  background: var(--color-danger-light);
+  color: var(--color-danger);
   border-radius: var(--radius-md);
   font-size: 16px;
   font-weight: 700;

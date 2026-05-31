@@ -15,6 +15,18 @@ export default function MySubscriptions() {
   const activeSubscriptions = subscriptions.filter(s => s.is_active);
   const totalAmount = activeSubscriptions.reduce((sum, s) => sum + s.custom_price, 0);
 
+  function getDday(sub) {
+    const today = new Date();
+    const d = new Date(today.getFullYear(), today.getMonth(), sub.billing_date);
+    if (d <= today) d.setMonth(d.getMonth() + 1);
+    return Math.ceil((d - today) / (1000 * 60 * 60 * 24));
+  }
+
+  const sortedSubscriptions = [...subscriptions].sort((a, b) => {
+    if (a.is_active !== b.is_active) return a.is_active ? -1 : 1;
+    return getDday(a) - getDday(b);
+  });
+
   const selectedSub = subscriptions.find(s => s.id === selectedId);
   const selectedService = selectedSub
     ? services.find(sv => sv.id === selectedSub.service_id)
@@ -38,7 +50,7 @@ export default function MySubscriptions() {
           </div>
         ) : (
           <div className={styles.list}>
-            {subscriptions.map(sub => {
+            {sortedSubscriptions.map(sub => {
               const service = services.find(s => s.id === sub.service_id);
               if (!service) return null;
               return (

@@ -1,48 +1,67 @@
 .card {
   background: var(--color-card);
   border-radius: var(--radius-md);
-  padding: 16px;
+  padding: 14px 16px;
   box-shadow: var(--shadow-card);
   cursor: pointer;
-  position: relative;
-  transition: transform 0.1s;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.12s;
 }
 
 .card:active {
-  transform: scale(0.97);
-}
-
-.promoTag {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: var(--color-success);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 20px;
-  letter-spacing: -0.1px;
+  transform: scale(0.98);
 }
 
 .logo {
-  font-size: 36px;
-  margin-bottom: 4px;
+  font-size: 34px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .name {
   font-size: 15px;
   font-weight: 700;
   letter-spacing: -0.3px;
+  color: var(--color-text);
+}
+
+.promoTag {
+  background: var(--color-success);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  letter-spacing: -0.1px;
+  flex-shrink: 0;
 }
 
 .rating {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .ratingNum {
@@ -57,16 +76,30 @@
 }
 
 .benefits {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-text-secondary);
-  line-height: 1.5;
-  margin-top: 2px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
 }
 
 .price {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
   color: var(--color-primary);
-  letter-spacing: -0.3px;
-  margin-top: auto;
+  letter-spacing: -0.5px;
+}
+
+.priceLabel {
+  font-size: 11px;
+  color: var(--color-muted);
 }

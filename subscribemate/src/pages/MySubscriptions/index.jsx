@@ -22,7 +22,7 @@ export default function MySubscriptions() {
 
   return (
     <div className={styles.page}>
-      <Dashboard totalAmount={totalAmount} activeCount={activeSubscriptions.length} />
+      <Dashboard totalAmount={totalAmount} activeCount={activeSubscriptions.length} subscriptions={subscriptions} services={services} />
 
       <div className={styles.listSection}>
         <div className={styles.sectionHeader}>

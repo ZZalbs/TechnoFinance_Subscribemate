@@ -17,10 +17,116 @@
   flex-shrink: 0;
 }
 
+.headerInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .name {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.editBtn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.editForm {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.editField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.editLabel {
+  font-size: 12px;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.priceWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.editInput {
+  flex: 1;
+  padding: 10px 12px;
+  background: var(--color-card);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.editInput:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.editSelect {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--color-card);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.priceUnit {
+  font-size: 14px;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.editActions {
+  display: flex;
+  gap: 8px;
+}
+
+.editCancelBtn {
+  flex: 1;
+  padding: 12px;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.editSaveBtn {
+  flex: 2;
+  padding: 12px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .plan {

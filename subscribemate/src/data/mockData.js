@@ -137,6 +137,7 @@ export const initialSubscriptions = [
   {
     id: 101,
     service_id: 1,
+    plan_name: '스탠다드',
     custom_price: 17000,
     billing_date: 15,
     is_active: true,
@@ -144,6 +145,7 @@ export const initialSubscriptions = [
   {
     id: 102,
     service_id: 2,
+    plan_name: '프리미엄 개인',
     custom_price: 10900,
     billing_date: 1,
     is_active: true,
@@ -151,6 +153,7 @@ export const initialSubscriptions = [
   {
     id: 103,
     service_id: 3,
+    plan_name: '로켓와우',
     custom_price: 7890,
     billing_date: 20,
     is_active: true,
@@ -158,6 +161,7 @@ export const initialSubscriptions = [
   {
     id: 104,
     service_id: 6,
+    plan_name: '스탠다드',
     custom_price: 12900,
     billing_date: 28,
     is_active: false,

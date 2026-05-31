@@ -24,6 +24,12 @@ export function AppProvider({ children }) {
     setSubscriptions(prev => prev.filter(s => s.id !== id));
   }
 
+  function editSubscription(id, changes) {
+    setSubscriptions(prev =>
+      prev.map(s => s.id === id ? { ...s, ...changes } : s)
+    );
+  }
+
   function addReview(review) {
     setReviews(prev => [
       { ...review, id: Date.now(), created_at: new Date().toISOString().slice(0, 10) },
@@ -33,7 +39,7 @@ export function AppProvider({ children }) {
 
   return (
     <AppContext.Provider value={{
-      subscriptions, addSubscription, toggleSubscription, deleteSubscription,
+      subscriptions, addSubscription, toggleSubscription, deleteSubscription, editSubscription,
       reviews, addReview,
     }}>
       {children}

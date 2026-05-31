@@ -8,7 +8,7 @@ import AddForm from './AddForm';
 import styles from './index.module.css';
 
 export default function MySubscriptions() {
-  const { subscriptions, addSubscription, toggleSubscription, deleteSubscription } = useApp();
+  const { subscriptions, addSubscription, toggleSubscription, deleteSubscription, editSubscription } = useApp();
   const [selectedId, setSelectedId] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
 
@@ -68,11 +68,13 @@ export default function MySubscriptions() {
       </div>
 
       <DetailSheet
+        key={selectedId}
         isOpen={!!selectedId}
         onClose={() => setSelectedId(null)}
         subscription={selectedSub}
         service={selectedService}
         onDelete={() => deleteSubscription(selectedId)}
+        onEdit={(changes) => editSubscription(selectedId, changes)}
       />
 
       <AddForm

@@ -54,6 +54,7 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
     const plan = selectedPlan ?? plans[0];
     addSubscription({
       service_id: service.id,
+      plan_name: plan.name,
       custom_price: plan.price,
       billing_date: 1,
     });

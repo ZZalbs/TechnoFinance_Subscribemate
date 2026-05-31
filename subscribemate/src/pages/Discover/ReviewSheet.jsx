@@ -12,11 +12,15 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
   const [content, setContent] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
   const [showWriteForm, setShowWriteForm] = useState(false);
+  const [showPlans, setShowPlans] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
 
   if (!service) return null;
 
   const serviceReviews = reviews.filter(r => r.service_id === service.id);
   const isSubscribed = subscriptions.some(s => s.service_id === service.id);
+  const plans = service.plans ?? [{ name: service.plan_name, price: service.base_price }];
+  const hasMultiplePlans = plans.length > 1;
 
   function toggleTag(tag) {
     setSelectedTags(prev =>
@@ -41,13 +45,18 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
   }
 
   function handleAddSubscription() {
+    const plan = selectedPlan ?? plans[0];
     addSubscription({
       service_id: service.id,
-      custom_price: service.base_price,
+      custom_price: plan.price,
       billing_date: 1,
     });
     onClose();
   }
+
+  const avgRating = serviceReviews.length > 0
+    ? serviceReviews.reduce((s, r) => s + r.rating, 0) / serviceReviews.length
+    : null;
 
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose}>
@@ -55,21 +64,48 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
         <span className={styles.logo}>{service.logo}</span>
         <div className={styles.headerInfo}>
           <h3 className={styles.name}>{service.name}</h3>
-          <div className={styles.ratingRow}>
-            <StarRating rating={Math.round(service.avg_rating)} size="sm" />
-            <span className={styles.ratingNum}>{service.avg_rating.toFixed(1)}</span>
-          </div>
+          {avgRating !== null && (
+            <div className={styles.ratingRow}>
+              <StarRating rating={Math.round(avgRating)} size="sm" />
+              <span className={styles.ratingNum}>{avgRating.toFixed(1)}</span>
+            </div>
+          )}
         </div>
       </div>
 
       <p className={styles.benefits}>{service.benefits}</p>
 
-      {!isSubscribed && (
-        <button className={styles.addBtn} onClick={handleAddSubscription}>
-          + 내 구독에 추가
+      <div className={styles.plansSection}>
+        <button
+          className={styles.plansToggle}
+          onClick={() => setShowPlans(v => !v)}
+        >
+          <span>요금제 {plans.length}개</span>
+          <span className={styles.plansArrow}>{showPlans ? '▲' : '▼'}</span>
         </button>
-      )}
-      {isSubscribed && (
+        {showPlans && (
+          <div className={styles.plansList}>
+            {plans.map(plan => (
+              <button
+                key={plan.name}
+                className={`${styles.planItem} ${selectedPlan?.name === plan.name ? styles.planSelected : ''}`}
+                onClick={() => setSelectedPlan(plan)}
+              >
+                <span className={styles.planName}>{plan.name}</span>
+                <span className={styles.planPrice}>
+                  {plan.price === 0 ? '무료' : `${plan.price.toLocaleString('ko-KR')}원/월`}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {!isSubscribed ? (
+        <button className={styles.addBtn} onClick={handleAddSubscription}>
+          + 내 구독에 추가{selectedPlan ? ` (${selectedPlan.name})` : hasMultiplePlans ? ' (요금제 선택)' : ''}
+        </button>
+      ) : (
         <div className={styles.subscribedBadge}>✓ 이미 구독 중</div>
       )}
 

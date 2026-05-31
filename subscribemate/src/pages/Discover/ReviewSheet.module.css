@@ -45,8 +45,68 @@
   font-size: 13px;
   color: var(--color-text-secondary);
   line-height: 1.6;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   padding: 0 2px;
+}
+
+.plansSection {
+  margin-bottom: 16px;
+}
+
+.plansToggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.plansArrow {
+  font-size: 10px;
+  color: var(--color-muted);
+}
+
+.plansList {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.planItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.planItem.planSelected {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+}
+
+.planName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.planPrice {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
 }
 
 .addBtn {

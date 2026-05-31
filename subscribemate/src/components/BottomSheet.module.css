@@ -36,7 +36,7 @@
 }
 
 .footer {
-  padding: 12px 20px 32px;
+  padding: 20px 20px 32px;
   border-top: 1px solid var(--color-border);
   background: #fff;
   flex-shrink: 0;

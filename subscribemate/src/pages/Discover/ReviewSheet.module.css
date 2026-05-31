@@ -126,6 +126,19 @@
   opacity: 0.85;
 }
 
+.planItemError {
+  border-color: var(--color-danger) !important;
+  background: var(--color-danger-light) !important;
+}
+
+.planErrorMsg {
+  font-size: 12px;
+  color: var(--color-danger);
+  margin-top: -12px;
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+
 .subscribedBadge {
   width: 100%;
   padding: 12px;

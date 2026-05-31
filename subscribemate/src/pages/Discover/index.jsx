@@ -74,6 +74,7 @@ export default function Discover() {
       </div>
 
       <ReviewSheet
+        key={selectedServiceId}
         isOpen={!!selectedServiceId}
         onClose={() => setSelectedServiceId(null)}
         service={selectedService}

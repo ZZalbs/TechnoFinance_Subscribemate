@@ -14,6 +14,7 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
   const [showWriteForm, setShowWriteForm] = useState(false);
   const [showPlans, setShowPlans] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
+  const [planError, setPlanError] = useState(false);
 
   if (!service) return null;
 
@@ -45,6 +46,11 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
   }
 
   function handleAddSubscription() {
+    if (hasMultiplePlans && !selectedPlan) {
+      setPlanError(true);
+      setShowPlans(true);
+      return;
+    }
     const plan = selectedPlan ?? plans[0];
     addSubscription({
       service_id: service.id,
@@ -88,8 +94,8 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
             {plans.map(plan => (
               <button
                 key={plan.name}
-                className={`${styles.planItem} ${selectedPlan?.name === plan.name ? styles.planSelected : ''}`}
-                onClick={() => setSelectedPlan(plan)}
+                className={`${styles.planItem} ${selectedPlan?.name === plan.name ? styles.planSelected : ''} ${planError && !selectedPlan ? styles.planItemError : ''}`}
+                onClick={() => { setSelectedPlan(plan); setPlanError(false); }}
               >
                 <span className={styles.planName}>{plan.name}</span>
                 <span className={styles.planPrice}>
@@ -102,9 +108,14 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
       </div>
 
       {!isSubscribed ? (
-        <button className={styles.addBtn} onClick={handleAddSubscription}>
-          + 내 구독에 추가{selectedPlan ? ` (${selectedPlan.name})` : hasMultiplePlans ? ' (요금제 선택)' : ''}
-        </button>
+        <>
+          <button className={styles.addBtn} onClick={handleAddSubscription}>
+            + 내 구독에 추가{selectedPlan ? ` (${selectedPlan.name})` : ''}
+          </button>
+          {planError && !selectedPlan && (
+            <p className={styles.planErrorMsg}>요금제를 선택해주세요</p>
+          )}
+        </>
       ) : (
         <div className={styles.subscribedBadge}>✓ 이미 구독 중</div>
       )}

@@ -1,49 +1,46 @@
 .dashboard {
-  background: var(--gradient-primary);
-  padding: 28px 20px 32px;
-  position: relative;
-  overflow: hidden;
+  padding: 12px 20px 8px;
 }
 
-.dashboard::before {
-  content: '';
-  position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 180px;
-  height: 180px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 50%;
+.appHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
 }
 
-.dashboard::after {
-  content: '';
-  position: absolute;
-  bottom: -60px;
-  right: 40px;
-  width: 140px;
-  height: 140px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 50%;
+.appLogo {
+  width: 16px;
+  height: 16px;
+  filter: grayscale(1) opacity(0.45);
+}
+
+.appName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-muted);
+  letter-spacing: -0.3px;
 }
 
 .inner {
-  position: relative;
-  z-index: 1;
+  background: var(--color-card);
+  border-radius: 20px;
+  padding: 22px 20px 18px;
+  box-shadow: var(--shadow-card);
 }
 
 .label {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.75);
-  margin-bottom: 10px;
+  color: var(--color-muted);
+  margin-bottom: 8px;
   letter-spacing: -0.1px;
 }
 
 .amount {
-  font-size: 42px;
+  font-size: 40px;
   font-weight: 800;
-  color: #fff;
+  color: var(--color-text);
   letter-spacing: -2px;
   line-height: 1.1;
   display: flex;
@@ -52,7 +49,7 @@
 }
 
 .unit {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.5px;
 }
@@ -66,15 +63,15 @@
 
 .sub {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--color-muted);
   letter-spacing: -0.2px;
 }
 
 .nextPayment {
   font-size: 12px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
   padding: 4px 10px;
   border-radius: 20px;
   letter-spacing: -0.2px;

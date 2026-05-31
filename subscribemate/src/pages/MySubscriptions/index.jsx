@@ -28,6 +28,7 @@ export default function MySubscriptions() {
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>내 구독 목록</h2>
           <span className={styles.count}>{subscriptions.length}개</span>
+          <button className={styles.addBtn} onClick={() => setShowAddForm(true)}>+ 구독 추가</button>
         </div>
 
         {subscriptions.length === 0 ? (
@@ -53,14 +54,6 @@ export default function MySubscriptions() {
           </div>
         )}
       </div>
-
-      <button
-        className={styles.fab}
-        onClick={() => setShowAddForm(true)}
-        aria-label="구독 추가"
-      >
-        +
-      </button>
 
       <DetailSheet
         isOpen={!!selectedId}

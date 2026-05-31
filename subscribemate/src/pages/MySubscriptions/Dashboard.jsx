@@ -29,6 +29,10 @@ export default function Dashboard({ totalAmount, activeCount, subscriptions, ser
 
   return (
     <div className={styles.dashboard}>
+      <div className={styles.appHeader}>
+        <img className={styles.appLogo} src="/favicon.svg" alt="" />
+        <span className={styles.appName}>구독 메이트</span>
+      </div>
       <div className={styles.inner}>
         <p className={styles.label}>이번 달 고정 지출</p>
         <p className={styles.amount}>

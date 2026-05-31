@@ -8,7 +8,6 @@
   box-shadow: var(--shadow-card);
   cursor: pointer;
   transition: opacity 0.2s, transform 0.15s;
-  border-left: 3px solid var(--color-primary);
   position: relative;
   overflow: hidden;
 }
@@ -19,7 +18,6 @@
 
 .card.inactive {
   opacity: 0.38;
-  border-left-color: var(--color-border);
 }
 
 .logo {

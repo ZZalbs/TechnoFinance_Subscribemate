@@ -1,8 +1,7 @@
 import StarRating from '../../components/StarRating';
 import styles from './ServiceCard.module.css';
 
-export default function ServiceCard({ service, reviewCount, avgRating, onClick }) {
-  const hasReviews = reviewCount > 0;
+export default function ServiceCard({ service, reviewCount, onClick }) {
   const minPrice = service.plans
     ? Math.min(...service.plans.map(p => p.price))
     : service.base_price;
@@ -18,15 +17,11 @@ export default function ServiceCard({ service, reviewCount, avgRating, onClick }
             <span className={styles.promoTag}>{service.promo_tag}</span>
           )}
         </div>
-        {hasReviews ? (
-          <div className={styles.rating}>
-            <StarRating rating={Math.round(avgRating)} size="sm" />
-            <span className={styles.ratingNum}>{avgRating.toFixed(1)}</span>
-            <span className={styles.reviewCount}>리뷰 {reviewCount}개</span>
-          </div>
-        ) : (
-          <span className={styles.noReview}>아직 리뷰가 없어요</span>
-        )}
+        <div className={styles.rating}>
+          <StarRating rating={Math.round(service.avg_rating)} size="sm" />
+          <span className={styles.ratingNum}>{service.avg_rating.toFixed(1)}</span>
+          <span className={styles.reviewCount}>리뷰 {reviewCount}개</span>
+        </div>
         <p className={styles.benefits}>{service.benefits}</p>
       </div>
       <div className={styles.tail}>

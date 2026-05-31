@@ -60,22 +60,16 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
     onClose();
   }
 
-  const avgRating = serviceReviews.length > 0
-    ? serviceReviews.reduce((s, r) => s + r.rating, 0) / serviceReviews.length
-    : null;
-
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose}>
       <div className={styles.header}>
         <span className={styles.logo}>{service.logo}</span>
         <div className={styles.headerInfo}>
           <h3 className={styles.name}>{service.name}</h3>
-          {avgRating !== null && (
-            <div className={styles.ratingRow}>
-              <StarRating rating={Math.round(avgRating)} size="sm" />
-              <span className={styles.ratingNum}>{avgRating.toFixed(1)}</span>
-            </div>
-          )}
+          <div className={styles.ratingRow}>
+            <StarRating rating={Math.round(service.avg_rating)} size="sm" />
+            <span className={styles.ratingNum}>{service.avg_rating.toFixed(1)}</span>
+          </div>
         </div>
       </div>
 

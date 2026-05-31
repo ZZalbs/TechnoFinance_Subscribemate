@@ -55,9 +55,8 @@ export const services = [
     logo: '📝',
     cancel_url: 'https://www.notion.so/billing',
     official_url: 'https://www.notion.so',
-    base_price: 0,
+    base_price: 16000,
     plans: [
-      { name: 'Free', price: 0 },
       { name: 'Plus', price: 16000 },
       { name: 'Business', price: 32000 },
     ],

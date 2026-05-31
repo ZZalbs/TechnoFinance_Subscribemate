@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styles from './BottomSheet.module.css';
 
-export default function BottomSheet({ isOpen, onClose, children }) {
+export default function BottomSheet({ isOpen, onClose, children, footer }) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -15,9 +15,19 @@ export default function BottomSheet({ isOpen, onClose, children }) {
 
   return (
     <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.sheet} onClick={e => e.stopPropagation()}>
+      <div
+        className={`${styles.sheet} ${footer ? styles.sheetWithFooter : ''}`}
+        onClick={e => e.stopPropagation()}
+      >
         <div className={styles.handle} />
-        {children}
+        {footer ? (
+          <>
+            <div className={styles.body}>{children}</div>
+            <div className={styles.footer}>{footer}</div>
+          </>
+        ) : (
+          children
+        )}
       </div>
     </div>
   );

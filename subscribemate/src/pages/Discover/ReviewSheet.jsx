@@ -60,8 +60,33 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
     onClose();
   }
 
+  const footer = (
+    <>
+      {!isSubscribed ? (
+        <>
+          <button className={styles.addBtn} onClick={handleAddSubscription}>
+            + 내 구독에 추가{selectedPlan ? ` (${selectedPlan.name})` : ''}
+          </button>
+          {planError && !selectedPlan && (
+            <p className={styles.planErrorMsg}>요금제를 선택해주세요</p>
+          )}
+        </>
+      ) : (
+        <div className={styles.subscribedBadge}>✓ 이미 구독 중</div>
+      )}
+      <a
+        href={service.official_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.officialBtn}
+      >
+        공식 홈페이지
+      </a>
+    </>
+  );
+
   return (
-    <BottomSheet isOpen={isOpen} onClose={onClose}>
+    <BottomSheet isOpen={isOpen} onClose={onClose} footer={footer}>
       <div className={styles.header}>
         <span className={styles.logo}>{service.logo}</span>
         <div className={styles.headerInfo}>
@@ -100,19 +125,6 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
           </div>
         )}
       </div>
-
-      {!isSubscribed ? (
-        <>
-          <button className={styles.addBtn} onClick={handleAddSubscription}>
-            + 내 구독에 추가{selectedPlan ? ` (${selectedPlan.name})` : ''}
-          </button>
-          {planError && !selectedPlan && (
-            <p className={styles.planErrorMsg}>요금제를 선택해주세요</p>
-          )}
-        </>
-      ) : (
-        <div className={styles.subscribedBadge}>✓ 이미 구독 중</div>
-      )}
 
       <div className={styles.reviewSection}>
         <div className={styles.reviewHeader}>

@@ -46,13 +46,10 @@
 }
 
 .editForm {
-  background: var(--color-bg);
-  border-radius: var(--radius-md);
-  padding: 16px;
-  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
+  margin-bottom: 8px;
 }
 
 .editField {
@@ -63,70 +60,80 @@
 
 .editLabel {
   font-size: 12px;
+  font-weight: 600;
   color: var(--color-muted);
-  font-weight: 500;
+  letter-spacing: 0.2px;
 }
 
 .priceWrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  position: relative;
+}
+
+.editInput, .editSelect {
+  width: 100%;
+  padding: 14px 40px 14px 16px;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  color: var(--color-text);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23aaa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  transition: border-color 0.15s;
 }
 
 .editInput {
-  flex: 1;
-  padding: 10px 12px;
-  background: var(--color-card);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  color: var(--color-text);
+  background-image: none;
+  padding-right: 16px;
 }
 
-.editInput:focus {
+.priceWrap .editInput {
+  padding-right: 36px;
+}
+
+.editInput:focus, .editSelect:focus {
   border-color: var(--color-primary);
   outline: none;
 }
 
-.editSelect {
-  width: 100%;
-  padding: 10px 12px;
-  background: var(--color-card);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  color: var(--color-text);
-}
-
 .priceUnit {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 14px;
   color: var(--color-muted);
-  flex-shrink: 0;
+  pointer-events: none;
 }
 
 .editActions {
   display: flex;
   gap: 8px;
+  margin-top: 8px;
 }
 
 .editCancelBtn {
   flex: 1;
-  padding: 12px;
+  padding: 16px;
   background: var(--color-bg);
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 600;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 700;
   color: var(--color-muted);
+  letter-spacing: -0.3px;
 }
 
 .editSaveBtn {
   flex: 2;
-  padding: 12px;
+  padding: 16px;
   background: var(--color-primary);
   color: #fff;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
+  border-radius: var(--radius-md);
+  font-size: 16px;
   font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
 .plan {

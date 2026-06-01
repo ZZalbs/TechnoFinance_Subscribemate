@@ -126,6 +126,11 @@
   opacity: 0.85;
 }
 
+.addBtnDisabled {
+  background: var(--color-bg);
+  color: var(--color-muted);
+}
+
 .officialBtn {
   display: block;
   text-align: center;

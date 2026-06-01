@@ -6,20 +6,38 @@ const DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
 
 export default function DetailSheet({ isOpen, onClose, subscription, service, onDelete, onEdit }) {
   const [editing, setEditing] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const [price, setPrice] = useState('');
   const [billingDate, setBillingDate] = useState(1);
 
   if (!subscription || !service) return null;
 
+  const plans = service.plans ?? [];
+  const planLabel = subscription.plan_name ?? service.plan_name;
+
   function handleEditOpen() {
+    const currentPlan = plans.find(p => p.name === subscription.plan_name) ?? null;
+    setSelectedPlan(currentPlan);
     setPrice(String(subscription.custom_price));
     setBillingDate(subscription.billing_date);
     setEditing(true);
   }
 
+  function handlePlanChange(e) {
+    const plan = plans.find(p => p.name === e.target.value);
+    if (plan) {
+      setSelectedPlan(plan);
+      setPrice(String(plan.price));
+    }
+  }
+
   function handleEditSubmit(e) {
     e.preventDefault();
-    onEdit({ custom_price: Number(price), billing_date: billingDate });
+    onEdit({
+      plan_name: selectedPlan?.name ?? subscription.plan_name,
+      custom_price: Number(price),
+      billing_date: billingDate,
+    });
     setEditing(false);
   }
 
@@ -30,8 +48,6 @@ export default function DetailSheet({ isOpen, onClose, subscription, service, on
     }
   }
 
-  const planLabel = subscription.plan_name ?? service.plan_name;
-
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose}>
       <div className={styles.header}>
@@ -41,12 +57,28 @@ export default function DetailSheet({ isOpen, onClose, subscription, service, on
             <h3 className={styles.name}>{service.name}</h3>
             <button className={styles.editBtn} onClick={handleEditOpen}>편집</button>
           </div>
-          {planLabel && <p className={styles.plan}>{planLabel}</p>}
+          {!editing && planLabel && <p className={styles.plan}>{planLabel}</p>}
         </div>
       </div>
 
       {editing ? (
         <form className={styles.editForm} onSubmit={handleEditSubmit}>
+          {plans.length > 0 && (
+            <div className={styles.editField}>
+              <label className={styles.editLabel}>요금제</label>
+              <select
+                className={styles.editSelect}
+                value={selectedPlan?.name ?? ''}
+                onChange={handlePlanChange}
+              >
+                {plans.map(p => (
+                  <option key={p.name} value={p.name}>
+                    {p.name} — {p.price === 0 ? '무료' : `${p.price.toLocaleString('ko-KR')}원`}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <div className={styles.editField}>
             <label className={styles.editLabel}>월 결제 금액</label>
             <div className={styles.priceWrap}>

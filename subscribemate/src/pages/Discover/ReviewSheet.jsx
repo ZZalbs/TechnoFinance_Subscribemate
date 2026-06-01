@@ -61,17 +61,17 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
     onClose();
   }
 
+  const needsPlanSelect = hasMultiplePlans && !selectedPlan;
+
   const footer = (
     <>
       {!isSubscribed ? (
-        <>
-          <button className={styles.addBtn} onClick={handleAddSubscription}>
-            + 내 구독에 추가{selectedPlan ? ` (${selectedPlan.name})` : ''}
-          </button>
-          {planError && !selectedPlan && (
-            <p className={styles.planErrorMsg}>요금제를 선택해주세요</p>
-          )}
-        </>
+        <button
+          className={`${styles.addBtn} ${needsPlanSelect ? styles.addBtnDisabled : ''}`}
+          onClick={handleAddSubscription}
+        >
+          {needsPlanSelect ? '요금제를 먼저 선택해주세요' : `+ 내 구독에 추가${selectedPlan ? ` (${selectedPlan.name})` : ''}`}
+        </button>
       ) : (
         <div className={styles.subscribedBadge}>✓ 이미 구독 중</div>
       )}

@@ -22,6 +22,12 @@ export default function Discover() {
     return reviews.filter(r => r.service_id === serviceId).length;
   }
 
+  function getAvgRating(serviceId) {
+    const serviceReviews = reviews.filter(r => r.service_id === serviceId);
+    if (serviceReviews.length === 0) return null;
+    return serviceReviews.reduce((sum, r) => sum + r.rating, 0) / serviceReviews.length;
+  }
+
   return (
     <div className={styles.page}>
       <div className={styles.pageHeader}>
@@ -61,6 +67,7 @@ export default function Discover() {
             key={service.id}
             service={service}
             reviewCount={getReviewCount(service.id)}
+            avgRating={getAvgRating(service.id)}
             onClick={() => setSelectedServiceId(service.id)}
           />
         ))}

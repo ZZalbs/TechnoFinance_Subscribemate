@@ -20,6 +20,9 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
 
   const serviceReviews = reviews.filter(r => r.service_id === service.id);
   const isSubscribed = subscriptions.some(s => s.service_id === service.id);
+  const avgRating = serviceReviews.length > 0
+    ? serviceReviews.reduce((sum, r) => sum + r.rating, 0) / serviceReviews.length
+    : null;
   const plans = service.plans ?? [{ name: service.plan_name, price: service.base_price }];
   const hasMultiplePlans = plans.length > 1;
 
@@ -92,10 +95,12 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
         <span className={styles.logo}>{service.logo}</span>
         <div className={styles.headerInfo}>
           <h3 className={styles.name}>{service.name}</h3>
-          <div className={styles.ratingRow}>
-            <StarRating rating={Math.round(service.avg_rating)} size="sm" />
-            <span className={styles.ratingNum}>{service.avg_rating.toFixed(1)}</span>
-          </div>
+          {avgRating !== null && (
+            <div className={styles.ratingRow}>
+              <StarRating rating={Math.round(avgRating)} size="sm" />
+              <span className={styles.ratingNum}>{avgRating.toFixed(1)}</span>
+            </div>
+          )}
         </div>
       </div>
 

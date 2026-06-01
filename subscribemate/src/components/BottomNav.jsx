@@ -1,3 +1,4 @@
+import { useApp } from '../context/AppContext';
 import styles from './BottomNav.module.css';
 
 function IconSubscriptions({ active }) {
@@ -21,7 +22,20 @@ function IconDiscover({ active }) {
   );
 }
 
+function IconPremium({ active }) {
+  const color = active ? 'var(--color-primary)' : 'var(--color-muted)';
+  const opacity = active ? 1 : 0.55;
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 18L5.5 10L10 15L12 7L14 15L18.5 10L21 18H3Z" fill={color} opacity={opacity} />
+      <rect x="3" y="19" width="18" height="2" rx="1" fill={color} opacity={opacity * 0.6} />
+    </svg>
+  );
+}
+
 export default function BottomNav({ currentTab, onTabChange }) {
+  const { isPremium } = useApp();
+
   return (
     <nav className={styles.nav}>
       <button
@@ -41,6 +55,18 @@ export default function BottomNav({ currentTab, onTabChange }) {
           <IconDiscover active={currentTab === 'discover'} />
         </span>
         <span className={styles.label}>탐색·추천</span>
+      </button>
+      <button
+        className={`${styles.tab} ${currentTab === 'premium' ? styles.active : ''} ${styles.premiumTab}`}
+        onClick={() => onTabChange('premium')}
+      >
+        <span className={styles.icon}>
+          <IconPremium active={currentTab === 'premium'} />
+        </span>
+        <span className={styles.label}>
+          프리미엄
+          {isPremium && <span className={styles.premiumDot} />}
+        </span>
       </button>
     </nav>
   );

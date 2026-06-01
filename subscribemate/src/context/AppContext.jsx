@@ -6,6 +6,29 @@ const AppContext = createContext(null);
 export function AppProvider({ children }) {
   const [subscriptions, setSubscriptions] = useState(initialSubscriptions);
   const [reviews, setReviews] = useState(initialReviews);
+  const [premiumStatus, setPremiumStatus] = useState(null);
+  // premiumStatus = null | { type: 'trial'|'full', expiresAt: 'YYYY-MM-DD' }
+
+  const premiumDaysLeft = premiumStatus
+    ? Math.max(0, Math.ceil((new Date(premiumStatus.expiresAt) - new Date()) / (1000 * 60 * 60 * 24)))
+    : 0;
+  const isPremium = !!premiumStatus && premiumDaysLeft > 0;
+
+  function activatePremiumTrial(days = 7) {
+    const expiry = new Date();
+    expiry.setDate(expiry.getDate() + days);
+    setPremiumStatus({ type: 'trial', expiresAt: expiry.toISOString().slice(0, 10) });
+  }
+
+  function subscribePremium() {
+    const expiry = new Date();
+    expiry.setFullYear(expiry.getFullYear() + 1);
+    setPremiumStatus({ type: 'full', expiresAt: expiry.toISOString().slice(0, 10) });
+  }
+
+  function cancelPremium() {
+    setPremiumStatus(null);
+  }
 
   function addSubscription(sub) {
     setSubscriptions(prev => [
@@ -41,6 +64,7 @@ export function AppProvider({ children }) {
     <AppContext.Provider value={{
       subscriptions, addSubscription, toggleSubscription, deleteSubscription, editSubscription,
       reviews, addReview,
+      isPremium, premiumStatus, premiumDaysLeft, activatePremiumTrial, subscribePremium, cancelPremium,
     }}>
       {children}
     </AppContext.Provider>

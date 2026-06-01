@@ -7,7 +7,7 @@ import styles from './ReviewSheet.module.css';
 const REVIEW_TAGS = ['#가성비최고', '#볼게없음', '#광고없음', '#추천', '#생활필수', '#생산성UP', '#가격이부담', '#콘텐츠풍부'];
 
 export default function ReviewSheet({ isOpen, onClose, service }) {
-  const { reviews, addReview, subscriptions, addSubscription } = useApp();
+  const { reviews, addReview, subscriptions, addSubscription, isPremium, activatePremiumTrial } = useApp();
   const [rating, setRating] = useState(0);
   const [content, setContent] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
@@ -15,6 +15,7 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
   const [showPlans, setShowPlans] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [planError, setPlanError] = useState(false);
+  const [trialActivated, setTrialActivated] = useState(false);
 
   if (!service) return null;
 
@@ -42,6 +43,10 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
       content: content.trim(),
       tags: selectedTags,
     });
+    if (!isPremium) {
+      activatePremiumTrial(7);
+      setTrialActivated(true);
+    }
     setRating(0);
     setContent('');
     setSelectedTags([]);
@@ -131,6 +136,16 @@ export default function ReviewSheet({ isOpen, onClose, service }) {
           </div>
         )}
       </div>
+
+      {trialActivated && (
+        <div className={styles.trialToast}>
+          <span>👑</span>
+          <div>
+            <p className={styles.trialToastTitle}>프리미엄 7일 무료 체험 시작!</p>
+            <p className={styles.trialToastDesc}>리뷰 작성 감사해요. 지금부터 7일간 무료예요</p>
+          </div>
+        </div>
+      )}
 
       <div className={styles.reviewSection}>
         <div className={styles.reviewHeader}>

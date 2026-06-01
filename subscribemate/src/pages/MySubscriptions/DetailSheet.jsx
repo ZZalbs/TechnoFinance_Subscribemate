@@ -135,24 +135,30 @@ export default function DetailSheet({ isOpen, onClose, subscription, service, on
 
           <p className={styles.benefits}>{service.benefits}</p>
 
-          <div className={styles.actions}>
-            <a
-              href={service.cancel_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.cancelBtn}
-            >
-              🚫 해지하러 가기
-            </a>
-            <a
-              href={service.official_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.officialBtn}
-            >
-              공식 홈페이지
-            </a>
-          </div>
+          {(service.cancel_url || service.official_url) && (
+            <div className={styles.actions}>
+              {service.cancel_url && (
+                <a
+                  href={service.cancel_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.cancelBtn}
+                >
+                  🚫 해지하러 가기
+                </a>
+              )}
+              {service.official_url && (
+                <a
+                  href={service.official_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.officialBtn}
+                >
+                  공식 홈페이지
+                </a>
+              )}
+            </div>
+          )}
 
           <button className={styles.deleteBtn} onClick={handleDelete}>
             목록에서 삭제

@@ -23,7 +23,7 @@ export default function SubscriptionCard({ subscription, service, onToggle, onCl
       <div className={styles.logo}>{service.logo}</div>
       <div className={styles.info}>
         <p className={styles.name}>{service.name}</p>
-        <p className={styles.plan}>{service.plan_name}</p>
+        <p className={styles.plan}>{subscription.plan_name}</p>
       </div>
       <div className={styles.right}>
         <p className={styles.price}>{subscription.custom_price.toLocaleString('ko-KR')}원</p>

@@ -29,7 +29,8 @@ export default function MySubscriptions() {
 
   const selectedSub = subscriptions.find(s => s.id === selectedId);
   const selectedService = selectedSub
-    ? services.find(sv => sv.id === selectedSub.service_id)
+    ? (services.find(sv => sv.id === selectedSub.service_id)
+        ?? { name: selectedSub.custom_name ?? '기타', logo: '📋', category: '기타', benefits: '', cancel_url: '', official_url: '', plans: [] })
     : null;
 
   return (
@@ -51,8 +52,8 @@ export default function MySubscriptions() {
         ) : (
           <div className={styles.list}>
             {sortedSubscriptions.map(sub => {
-              const service = services.find(s => s.id === sub.service_id);
-              if (!service) return null;
+              const service = services.find(s => s.id === sub.service_id)
+                ?? { name: sub.custom_name ?? '기타', logo: '📋', category: '기타', benefits: '', cancel_url: '', official_url: '', plans: [] };
               return (
                 <SubscriptionCard
                   key={sub.id}

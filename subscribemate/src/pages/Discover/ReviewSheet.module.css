@@ -168,6 +168,31 @@
   text-align: center;
 }
 
+.trialToast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, var(--color-primary-light), #F3EFFE);
+  border: 1.5px solid rgba(91, 95, 237, 0.25);
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  font-size: 22px;
+}
+
+.trialToastTitle {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -0.2px;
+}
+
+.trialToastDesc {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
 .reviewSection {
   border-top: 1px solid var(--color-border);
   padding-top: 16px;

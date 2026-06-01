@@ -3,6 +3,7 @@ import { AppProvider } from './context/AppContext';
 import BottomNav from './components/BottomNav';
 import MySubscriptions from './pages/MySubscriptions';
 import Discover from './pages/Discover';
+import Premium from './pages/Premium';
 import './index.css';
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
       <div className="app-wrapper">
         {currentTab === 'subscriptions' && <MySubscriptions />}
         {currentTab === 'discover' && <Discover />}
+        {currentTab === 'premium' && <Premium />}
         <BottomNav currentTab={currentTab} onTabChange={setCurrentTab} />
       </div>
     </AppProvider>

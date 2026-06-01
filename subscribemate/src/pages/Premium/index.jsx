@@ -2,7 +2,6 @@ import { useApp } from '../../context/AppContext';
 import styles from './index.module.css';
 
 const FEATURES = [
-  { icon: '📊', title: '구독 지출 분석', desc: '월별·카테고리별 상세 리포트 제공' },
   { icon: '🔔', title: '결제일 알림', desc: '결제 3일 전 스마트 알림 서비스' },
   { icon: '♾️', title: '무제한 구독 등록', desc: '구독 서비스 개수 제한 없이 관리' },
   { icon: '✨', title: '광고 없는 경험', desc: '모든 광고 제거, 순수하게 집중' },

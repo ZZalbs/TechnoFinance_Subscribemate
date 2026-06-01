@@ -1,0 +1,141 @@
+.card {
+  margin: 0 16px;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--shadow-card);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--color-text);
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.barList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.barRow {}
+
+.barLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.catName {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.catAmount {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.barTrack {
+  height: 7px;
+  background: var(--color-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
+
+.topLabel {
+  font-size: 12px;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.topValue {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.empty {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-muted);
+  padding: 16px 0;
+}
+
+/* Locked state */
+.lockedCard {
+  margin: 0 16px;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: 24px 18px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.lockIcon {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+.lockTitle {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.3px;
+}
+
+.lockDesc {
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.lockBtn {
+  padding: 11px 24px;
+  background: var(--gradient-primary);
+  color: #fff;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  box-shadow: 0 3px 10px rgba(91, 95, 237, 0.3);
+}

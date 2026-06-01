@@ -12,7 +12,7 @@ export default function App() {
   return (
     <AppProvider>
       <div className="app-wrapper">
-        {currentTab === 'subscriptions' && <MySubscriptions />}
+        {currentTab === 'subscriptions' && <MySubscriptions onGoToPremium={() => setCurrentTab('premium')} />}
         {currentTab === 'discover' && <Discover />}
         {currentTab === 'premium' && <Premium />}
         <BottomNav currentTab={currentTab} onTabChange={setCurrentTab} />

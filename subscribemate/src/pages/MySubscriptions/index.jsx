@@ -5,9 +5,10 @@ import Dashboard from './Dashboard';
 import SubscriptionCard from './SubscriptionCard';
 import DetailSheet from './DetailSheet';
 import AddForm from './AddForm';
+import SpendingAnalysis from './SpendingAnalysis';
 import styles from './index.module.css';
 
-export default function MySubscriptions() {
+export default function MySubscriptions({ onGoToPremium }) {
   const { subscriptions, addSubscription, toggleSubscription, deleteSubscription, editSubscription } = useApp();
   const [selectedId, setSelectedId] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -36,6 +37,8 @@ export default function MySubscriptions() {
   return (
     <div className={styles.page}>
       <Dashboard totalAmount={totalAmount} activeCount={activeSubscriptions.length} subscriptions={subscriptions} services={services} />
+
+      <SpendingAnalysis onGoToPremium={onGoToPremium} />
 
       <div className={styles.listSection}>
         <div className={styles.sectionHeader}>
